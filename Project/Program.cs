@@ -1,7 +1,11 @@
-﻿internal class Program
+﻿using ZL.SnakeGame;
+
+public class Program
 {
+    private static SnakeGame snake = new();
+
     private static void Main(string[] args)
     {
-        SNAKE.Snake.Run();
+        snake.Run();
     }
 }

@@ -1,17 +1,20 @@
-﻿namespace ZL
+﻿namespace ZL.CSPlus
 {
-    public sealed class Sprite : Graphic
+    /// <summary>
+    /// Console Background
+    /// </summary>
+    public sealed class ConsoleBG : ConsoleGraphic
     {
-        public Sprite(int[,] colorMap) : base(colorMap, Coord.GetOffset(colorMap)) { }
+        public ConsoleBG(int[,] colorMap) : base(colorMap) { }
 
-        public override void Draw(Coord position)
+        public override void Draw(IntPoint position)
         {
             position.Y -= offset.Y;
             position.X -= offset.X;
 
-            for (int y = 0; y < colorMap.Length; ++y)
+            for (int y = 0; y < colorMap.GetLength(0); ++y)
             {
-                for (int x = 0; x < colorMap.Length; ++x)
+                for (int x = 0; x < colorMap.GetLength(1); ++x)
                 {
                     Console.SetCursorPosition(position.X + x, position.Y + y);
 

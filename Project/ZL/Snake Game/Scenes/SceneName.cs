@@ -1,6 +1,6 @@
-﻿namespace SNAKE
+﻿namespace ZL.SnakeGame
 {
-    internal enum SceneName
+    public enum SceneName
     {
         MainMenu,
         Level,

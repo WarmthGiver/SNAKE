@@ -1,25 +1,25 @@
-﻿namespace ZL
+﻿namespace ZL.CSPlus
 {
-    public struct Coord
+    public struct IntPoint
     {
         public int Y { get; set; }
         public int X { get; set; }
 
-        public Coord(int y, int x)
+        public IntPoint(int y, int x)
         {
             Y = y;
             X = x;
         }
 
-        public static Coord GetOffset<T>(T[,] strings)
+        public static IntPoint GetOffset<T>(T[,] strings)
         {
-            int y = strings.GetLength(0);
-            int x = strings.GetLength(1);
+            int y = strings.GetLength(0) >> 1;
+            int x = strings.GetLength(1) >> 1;
 
-            return new Coord(y, x);
+            return new IntPoint(y, x);
         }
 
-        public static Coord GetOffset(string[] strings)
+        public static IntPoint GetOffset(string[] strings)
         {
             int y = strings.Length;
             int x = 0;
@@ -32,7 +32,7 @@
                 }
             }
 
-            return new Coord(y, x);
+            return new IntPoint(y, x);
         }
     }
 }

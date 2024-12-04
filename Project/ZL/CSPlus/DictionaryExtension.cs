@@ -1,4 +1,4 @@
-﻿namespace ZL
+﻿namespace ZL.CSPlus
 {
     public static partial class DictionaryExtension
     {
@@ -14,6 +14,11 @@
             where TEnum : Enum
         {
             return instance[key.ToString()];
+        }
+
+        public static TValue Get<TValue>(this Dictionary<string, TValue> instance, string key)
+        {
+            return instance[key];
         }
     }
 }

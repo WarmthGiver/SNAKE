@@ -1,15 +1,18 @@
-﻿namespace ZL
+﻿namespace ZL.CSPlus
 {
-    public sealed class Text : Graphic
+    /// <summary>
+    /// Console Foreground
+    /// </summary>
+    public sealed class ConsoleFG : ConsoleGraphic
     {
         private readonly string[] strings;
 
-        public Text(int[,] colorMap, string[] strings) : base(colorMap, Coord.GetOffset(strings))
+        public ConsoleFG(int[,] colorMap, params string[] strings) : base(colorMap)
         {
             this.strings = strings;
         }
 
-        public override void Draw(Coord position)
+        public override void Draw(IntPoint position)
         {
             position.X -= offset.X;
             position.Y -= offset.Y;

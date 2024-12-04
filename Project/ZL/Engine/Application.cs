@@ -1,46 +1,45 @@
 ﻿using System.Collections;
 
-namespace ZL
+namespace ZL.Engine
 {
-    public abstract class Application
-    {
-        private State state = State.Running;
+    public abstract partial class Application<TApplication>
 
-        public int timeScale = 100;
+        where TApplication : Application<TApplication>
+    {
+        private static State state = State.Running;
+
+        private static int timeScale = 100;
 
         private static Dictionary<IEnumerator, IEnumerator> routines = new();
 
         private static Stack<IEnumerator> finishedRoutines = new();
 
-        public static Dictionary<string, Sprite> spriteManager = new();
-
-        public static Dictionary<string, Scene> sceneManager = new();
-
         public void Run()
         {
-            Load();
+            Console.CursorVisible = false;
 
             Start();
 
             Update();
         }
 
-        protected abstract void Load();
-
         protected abstract void Start();
 
         protected void Update()
         {
-            while (state != State.Quit)
+            while (state != State.Terminated)
             {
-                if (routines.Count > 0)
+                if (state == State.Running)
                 {
-                    foreach (IEnumerator routine in routines.Values)
+                    if (routines.Count > 0)
                     {
-                        routine.MoveNext();
-                    }
+                        foreach (var routine in routines.Values)
+                        {
+                            routine.MoveNext();
+                        }
 
-                    RemoveFinisedRoutines();
+                        RemoveFinisedRoutines();
+                    }
                 }
 
                 Thread.Sleep(timeScale);
@@ -59,9 +58,9 @@ namespace ZL
 
         public static void StartRoutine(IEnumerator routine)
         {
-            IEnumerator a = Routine(routine);
+            var _routnie = Routine(routine);
 
-            routines.Add(routine, a);
+            routines.Add(routine, _routnie);
         }
 
         private static IEnumerator Routine(IEnumerator routine)
@@ -74,16 +73,20 @@ namespace ZL
             finishedRoutines.Push(routine);
         }
 
+
+
         public void Quit()
         {
-            state = State.Quit;
+            state = State.Terminated;
+
+            Console.CursorVisible = true;
         }
 
         public enum State
         {
+            Terminated,
             Running,
             Paused,
-            Quit,
         }
     }
 }
