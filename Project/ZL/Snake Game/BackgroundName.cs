@@ -1,6 +1,6 @@
 ﻿namespace ZL.SnakeGame
 {
-    public enum ConsoleBGName
+    internal enum BackgroundName
     {
         MainFrame,
         MainLogo,

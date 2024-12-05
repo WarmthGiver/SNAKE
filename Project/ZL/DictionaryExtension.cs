@@ -1,4 +1,7 @@
-﻿namespace ZL.CSPlus
+﻿using System;
+using System.Collections.Generic;
+
+namespace ZL
 {
     public static partial class DictionaryExtension
     {

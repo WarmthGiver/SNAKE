@@ -1,6 +1,6 @@
-﻿namespace ZL.CSPlus
+﻿namespace ZL.CS
 {
-    public abstract class Component : ConsoleObject
+    public abstract class Component : Object
     {
         protected SceneObject sceneObject;
 

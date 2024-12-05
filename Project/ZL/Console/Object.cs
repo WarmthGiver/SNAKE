@@ -1,6 +1,6 @@
-﻿namespace ZL.CSPlus
+﻿namespace ZL.CS
 {
-    public abstract class ConsoleObject
+    public abstract class Object
     {
         public bool isEnabled = true;
 
@@ -9,14 +9,14 @@
             isEnabled = value;
         }
 
-        public void Call()
+        public void CallUpdate()
         {
             if (isEnabled)
             {
-                _Call();
+                Update();
             }
         }
 
-        protected abstract void _Call();
+        protected abstract void Update();
     }
 }

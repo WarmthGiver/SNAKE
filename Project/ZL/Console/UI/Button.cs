@@ -1,4 +1,4 @@
-﻿namespace ZL.CSPlus
+﻿namespace ZL.CS.UI
 {
     public sealed class Button : Selectable
     {
@@ -7,10 +7,10 @@
 
         public Button(SceneObject sceneObject) : base(sceneObject) { }
 
-        protected override void _Call()
+        protected override void Update()
         {
-            image?.Call();
-            text?.Call();
+            //image?.Call();
+            //text?.Call();
         }
     }
 }

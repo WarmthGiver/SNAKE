@@ -1,12 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
 
-namespace ZL.Engine
+namespace ZL.CS
 {
-    public abstract partial class Application<TApplication>
+    public abstract class Application<TApplication>
 
         where TApplication : Application<TApplication>
     {
-        private static State state = State.Running;
+        private static State state = State.Terminated;
 
         private static int timeScale = 100;
 
@@ -16,11 +19,23 @@ namespace ZL.Engine
 
         public void Run()
         {
+            state = State.Running;
+
             Console.CursorVisible = false;
 
             Start();
 
             Update();
+        }
+
+        public void Pause()
+        {
+            state = State.Paused;
+        }
+
+        public void Quit()
+        {
+            state = State.Terminated;
         }
 
         protected abstract void Start();
@@ -44,6 +59,8 @@ namespace ZL.Engine
 
                 Thread.Sleep(timeScale);
             }
+
+            Terminate();
         }
 
         private void RemoveFinisedRoutines()
@@ -56,14 +73,14 @@ namespace ZL.Engine
             finishedRoutines.Clear();
         }
 
-        public static void StartRoutine(IEnumerator routine)
+        public void StartRoutine(IEnumerator routine)
         {
             var _routnie = Routine(routine);
 
             routines.Add(routine, _routnie);
         }
 
-        private static IEnumerator Routine(IEnumerator routine)
+        private IEnumerator Routine(IEnumerator routine)
         {
             while (routine.MoveNext())
             {
@@ -73,12 +90,8 @@ namespace ZL.Engine
             finishedRoutines.Push(routine);
         }
 
-
-
-        public void Quit()
+        private void Terminate()
         {
-            state = State.Terminated;
-
             Console.CursorVisible = true;
         }
 

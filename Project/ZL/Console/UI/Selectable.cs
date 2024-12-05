@@ -1,14 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System;
 
-namespace ZL.CSPlus
+namespace ZL.CS.UI
 {
-    public abstract class UI : Component
-    {
-
-
-        protected UI(SceneObject consoleObject) : base(consoleObject) { }
-    }
-
     public abstract class Selectable : Component
     {
         public readonly Navigation navigation = new();

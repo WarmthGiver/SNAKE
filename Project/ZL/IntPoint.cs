@@ -1,9 +1,11 @@
-﻿namespace ZL.CSPlus
+﻿namespace ZL
 {
     public struct IntPoint
     {
         public int Y { get; set; }
         public int X { get; set; }
+
+        public static readonly IntPoint zero = new(0, 0);
 
         public IntPoint(int y, int x)
         {
@@ -11,12 +13,19 @@
             X = x;
         }
 
-        public static IntPoint GetOffset<T>(T[,] strings)
+        public static IntPoint GetPivot(int[,] map)
         {
-            int y = strings.GetLength(0) >> 1;
-            int x = strings.GetLength(1) >> 1;
+            return GetPivot(map.GetLength(0), map.GetLength(1));
+        }
 
-            return new IntPoint(y, x);
+        public static IntPoint GetPivot(int height, int width)
+        {
+            return new IntPoint(height, width).GetPivot();
+        }
+
+        public IntPoint GetPivot()
+        {
+            return new(Y >> 1, X >> 1);
         }
 
         public static IntPoint GetOffset(string[] strings)
