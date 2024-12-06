@@ -2,9 +2,15 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="ZL">
+      <HintPath>..\..\ZL\ZL\bin\Release\net9.0\ZL.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 
 </Project>
