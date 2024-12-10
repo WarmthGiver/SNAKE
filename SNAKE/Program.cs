@@ -1,14 +1,11 @@
 ﻿using ZL.CS.SNAKE;
 
-namespace SNAKE
+internal class Program
 {
-    internal class Program
-    {
-        private static SnakeGame game = new();
+    private static SnakeGame snakeGame = new();
 
-        private static void Main(string[] args)
-        {
-            game.Run();
-        }
+    private static void Main(string[] args)
+    {
+        snakeGame.Run();
     }
 }
